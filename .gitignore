@@ -1,0 +1,11 @@
+/Frontend/node_modules
+/Frontend/.pnp
+/Frontend/.pnp.js
+/Frontend/coverage
+/Frontend/build
+/Frontend/.DS_Store
+/Frontend/.env.local
+/Frontend/.env.development.local
+/Frontend/.env.test.local
+/Frontend/.env.production.local
+/Frontend/npm-debug.log*

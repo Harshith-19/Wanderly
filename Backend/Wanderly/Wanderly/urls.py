@@ -13,9 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path
+from .views import PopularAndTrendingCityListView
+
+urlpatterns = [
+    path('popular-and-trending-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
+    # Add more URL patterns as needed
+]
+
 from django.contrib import admin
 from django.urls import path
+from .views import PopularAndTrendingCityListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('pt-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
 ]

@@ -34,7 +34,7 @@ const LeftContent = () => {
         return response.json();
       })
       .then(data => {
-        // console.log(data);
+        console.log(data);
         navigate('/bookingCards', { state: data });
       })
       .catch(error => {

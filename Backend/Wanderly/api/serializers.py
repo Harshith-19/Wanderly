@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Festival, Cities
+from .models import Festival, Cities, Places
 
 class FestivalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,3 +17,8 @@ class DetailsSerializer(serializers.Serializer):
     Country = serializers.CharField(max_length = 100)
     month = serializers.IntegerField()
     date = serializers.IntegerField()
+
+class PlacesToVisitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Places
+        fields = ('name', 'description', 'image')

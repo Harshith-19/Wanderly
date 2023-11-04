@@ -60,3 +60,10 @@ class Unique(models.Model):
 
     def __str__(self):
         return self.name
+
+class Trip(models.Model):
+    user = models.CharField(max_length=100)
+    itinerary = models.TextField()
+
+    def __str__(self):
+        return self.user

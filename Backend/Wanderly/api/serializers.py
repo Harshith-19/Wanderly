@@ -43,3 +43,11 @@ class UniqueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unique
         fields = ('name', 'description', 'image')
+
+class SubmitCartSerializer(serializers.Serializer):
+    user = serializers.CharField(max_length=100)
+
+class TripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trip
+        fields = '__all__'

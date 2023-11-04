@@ -78,3 +78,24 @@ class UniqueByCity(generics.ListAPIView):
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
         return Unique.objects.filter(city=city_id)
+
+class SubmitCartView(APIView):
+    def post(self, request):
+        serializer = SubmitCartSerializer(data=request.data)
+        if (serializer.is_valid()):
+            user = serializer.validated_data['user']
+            cart = Cart.objects.get(user=user)
+            if (cart is not None):
+                trip_data = {
+                    "user" : user,
+                    "itinerary" : cart.itinerary
+                }
+                tserializer = TripSerializer(data=trip_data)
+                if (tserializer.is_valid()):
+                    tserializer.save()
+                    cart.delete()
+                    return Response(status=status.HTTP_200_OK)
+                else:
+                    return Response(tserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

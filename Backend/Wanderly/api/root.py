@@ -16,5 +16,8 @@ def api_root(request, format=None):
             "cart-addition": reverse(
                 "add-to-cart", request=request, format=format
             ),
+            "cart-submission": reverse(
+                "submit-cart", request=request, format=format
+            ),
         }
     )

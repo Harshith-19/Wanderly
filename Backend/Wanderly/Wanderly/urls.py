@@ -27,4 +27,5 @@ urlpatterns = [
     path('api/cuisine/<str:city_id>/', CuisineByCity.as_view(), name='cuisine-list'),
     path('api/cuisine/<str:city_id>/', UniqueByCity.as_view(), name='unique-list'),
     path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
+    path('api/submit-cart/', SubmitCartView.as_view(), name='submit-cart'),
 ]

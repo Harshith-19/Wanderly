@@ -5,7 +5,7 @@ import Header from "./Header/Header";
 
 import LayoutDecore from "../../../assets/layoutDecore.png";
 
-const Layout = ({ children }) => {
+const Layout = ({ children}) => {
   return (
     <div className='relative overflow-hidden'>
       <img
@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
         alt='Decore'
         className='-z-10 absolute right-0 top-0 h-[900px] overflow-hidden'
       />
-      <Header />
+      <Header/>
       {children}
       <Footer />
     </div>

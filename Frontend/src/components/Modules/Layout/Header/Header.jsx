@@ -3,11 +3,12 @@ import Logo from "../../../Elements/Logo/Logo";
 import NavItems from "./NavItems";
 import Snackbar from "./Snackbar";
 import Container from "../../Container/Container";
-import LoginDialog from "../../../LoginPopup";
+import LoginDialog from "../../../Templates/Login/LoginPopup";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Header = () => {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
-
+  const [auth, setAuth] = useState(false);
   const openLoginDialog = () => {
     setIsLoginDialogOpen(true);
   };
@@ -44,6 +45,11 @@ const Header = () => {
           {links.map(({ href, title }) => (
             <NavItems href={href === "#home" ? "/" : href} title={title} key={title} />
           ))}
+          {
+            auth&&(
+              <NavItems href="/myTrips" title="My Trips" />
+            )
+          }
           <button className='text-secondaryLight items-center font-semibold border-2 border-secondaryLight px-9 py-2 rounded-md' onClick={openLoginDialog}>Login</button>
           {/* </div> */}
 
@@ -53,7 +59,7 @@ const Header = () => {
       </header>
       {isLoginDialogOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-40 bg-opacity-50 bg-black">
-          <LoginDialog onClose={closeLoginDialog} />
+          <LoginDialog setAuth={setAuth} onClose={closeLoginDialog} />
         </div>
       )}
     </Container>

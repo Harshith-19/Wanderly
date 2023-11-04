@@ -6,7 +6,7 @@ import BookingInput from "./components/Templates/Booking/BookingInput";
 import BookingCards from "./components/Templates/Booking/BookingCards";
 import SlangPage from "./components/Templates/Slangs/slangs";
 import ItineraryCards from "./components/Templates/ItinerarySelection/ItineraryCards";
-
+import MyTrips from "./components/Templates/MyTrips/MyTrips.jsx";
 
 function App() {
   const { hash } = window.location;
@@ -25,7 +25,7 @@ function App() {
         <Route path="/bookingCards" element={<Container><BookingCards/></Container>} />
         <Route path="/itinerarycards" element={<Container><ItineraryCards/></Container>} />
         <Route path="/slangs" element={<Container><SlangPage/></Container>} />
-        
+        <Route path="/myTrips" element={<Container><MyTrips/></Container>} />
       </Routes>
       
     </Router>

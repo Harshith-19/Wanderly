@@ -45,3 +45,9 @@ class Cuisine(models.Model):
     def __str__(self):
         return self.name
 
+class Cart(models.Model):
+    user = models.CharField(max_length=100)
+    itinerary = models.TextField(default='{}')
+
+    def __str__(self):
+        return self.user

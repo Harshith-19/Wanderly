@@ -13,5 +13,8 @@ def api_root(request, format=None):
                 "popular-and-trending-cities", request=request, format=format
             ),
             'places-to-visit': reverse('places-to-visit-list',args=[1], request=request, format=format),
+            "cart-addition": reverse(
+                "add-to-cart", request=request, format=format
+            ),
         }
     )

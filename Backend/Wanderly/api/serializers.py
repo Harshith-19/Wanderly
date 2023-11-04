@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Festival, Cities, Places
+from .models import Festival, Cities, Places, Cart
 
 class FestivalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,3 +27,14 @@ class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Places
         fields = ('name', 'description', 'image')
+    
+class AddToCartSerializer(serializers.Serializer):
+    user = serializers.CharField(max_length=100)
+    cityID = serializers.IntegerField()
+    addType = serializers.CharField(max_length=100)
+    TypeID = serializers.IntegerField()
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields  = '__all__'

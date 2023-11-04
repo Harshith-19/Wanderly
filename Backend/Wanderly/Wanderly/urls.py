@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from api.views import PopularAndTrendingCityListView, PlacesToVisitByCity
+from api.views import *
 from api.root import api_root
 
 urlpatterns = [
@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/pt-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
     path('api/places-to-visit/<str:city_id>/', PlacesToVisitByCity.as_view(), name='places-to-visit-list'),
+    path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
 ]

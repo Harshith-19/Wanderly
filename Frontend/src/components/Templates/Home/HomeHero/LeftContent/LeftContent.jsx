@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import './LeftContent.css'
 import HeadingDecor from "../../../../../assets/heroSection/heading-decor.png";
 import ReactVisibilitySensor from "react-visibility-sensor";
+import { useNavigate } from "react-router-dom";
 
 const LeftContent = () => {
   useEffect(() => {
@@ -10,9 +11,20 @@ const LeftContent = () => {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
   }, []);
-
+  const navigate = useNavigate();
+  const redirectToBookingCards = () => {
+    navigate('/bookingCards'); 
+  };
   
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
+  const openLoginDialog = () => {
+    setIsLoginDialogOpen(true);
+  };
+
+  const closeLoginDialog = () => {
+    setIsLoginDialogOpen(false);
+  };
 
   const [visible, setVisible] = useState(false);
   const translateVariants = {
@@ -71,8 +83,8 @@ const LeftContent = () => {
           name=""
         />
       </div>
-      <div className="button-container">
-        <span className="button ok" >Plan Travel</span>
+      <div className="button-container" onClick={redirectToBookingCards}>
+        <span className="button ok">Plan a Trip</span>
       </div>
     </div>
   </div>
@@ -90,13 +102,5 @@ const LeftContent = () => {
     </ReactVisibilitySensor>
   );
 };
-const TestButton = () => {
-  return (
-    <div className="test" title="Toggle reservation box size small/normal">
-      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" viewBox="0 0 36 14">
-        <rect id="switch" data-name="switch" width="36" height="14" rx="7" />
-      </svg>
-    </div>
-  );
-};
+
 export default LeftContent;

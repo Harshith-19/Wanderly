@@ -3,9 +3,18 @@ import './RightContent.css'
 import { motion } from "framer-motion";
 import main from "../../../../../assets/heroSection/main2.png"
 import ReactVisibilitySensor from "react-visibility-sensor";
+import { useNavigate } from "react-router-dom";
+
+
 
 const RightContent = () => {
+  const navigate = useNavigate();
+const redirectToBookingPage = () => {
+  navigate('/booking');
+};
   const [visible, setVisible] = useState(false);
+
+  
 
   const translateVariants = {
     invisible: {
@@ -17,13 +26,15 @@ const RightContent = () => {
       opacity: 1,
     },
   };
+
   return (
+    
     <ReactVisibilitySensor
       partialVisibility
       onChange={(isVisible) => isVisible && setVisible(isVisible)}
       offset={{ top: 400 }}
     >
-      <div>
+      <div className="relative h-full">
         <motion.div
           initial='invisible'
           animate={visible ? "visible" : "invisible"}

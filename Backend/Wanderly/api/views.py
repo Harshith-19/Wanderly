@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Cities, Festival, Places
 from rest_framework import status, generics
-from .serializers import CitySerializer, FestivalSerializer, DetailsSerializer, PlaceToVisitSerializer
+from .serializers import CitySerializer, FestivalSerializer, DetailsSerializer, PlacesToVisitSerializer
 
 class PopularAndTrendingCityListView(APIView):
     def post(self, request):
@@ -25,8 +25,8 @@ class PopularAndTrendingCityListView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class PlacesToVisitByCityList(generics.ListAPIView):
-    serializer_class = PlaceToVisitSerializer
+class PlacesToVisitByCity(generics.ListAPIView):
+    serializer_class = PlacesToVisitSerializer
 
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')

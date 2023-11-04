@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const citiesData = [
   {
@@ -31,6 +32,7 @@ const citiesData = [
 
 const BookingCards = () => {
   const [selectedCities, setSelectedCities] = useState([]);
+  const navigate = useNavigate();
 
   const handleCitySelect = (cityName) => {
     if (selectedCities.includes(cityName)) {
@@ -38,6 +40,12 @@ const BookingCards = () => {
     } else {
       setSelectedCities([...selectedCities, cityName]);
     }
+  };
+  const handleGoButtonClick = () => {
+    const selectedCitiesParam = selectedCities.join(',');
+
+    // Use the navigate function to go to the ItineraryCards page with the data in the location state
+    navigate('/itinerarycards', { state: { selectedCities: selectedCitiesParam } });
   };
 
   const renderLastSelectedCityDetails = () => {
@@ -58,6 +66,7 @@ const BookingCards = () => {
           />
           <p>{city.description}</p>
         </div>
+        
       );
     }
 
@@ -90,12 +99,27 @@ const BookingCards = () => {
         Rating: {place.rating}
       </p>
     </div>
+    
   </div>
+  
+  
 ))}
 
+
           </div>
+          
         </div>
+
+        
       ))}
+      <div className="md:col-span-2 text-center">
+        <button
+          className="bg-yellow-500 text-white rounded-full py-3 px-6 text-lg font-semibold"
+          onClick={handleGoButtonClick} // Call the function when the button is clicked
+        >
+          Go!
+        </button>
+      </div>
       {selectedCities.length > 0 && renderLastSelectedCityDetails()}
     </div>
   );

@@ -4,8 +4,10 @@ import TripCard from './TripCard'
 import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 
+  
 const Mytrips = () => {
     return (
+    
         <TripCard />
 
     )

@@ -6,7 +6,15 @@
     transition: all 0.100s ease-out;
     color: #e74c3c;
   }
+  .toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease; /* You can adjust the duration for smoother or faster transition */
+  }
   
+  .toggle-content.visible {
+    max-height: 1000px; /* Adjust this value based on your content's maximum height */
+  }
   
   .trip-card {
     background-image: linear-gradient(to bottom, #fff 0%, #ecf0f1 100%);
@@ -26,7 +34,6 @@
     top: 40px;
     left: 130px;
     z-index: 2;
-    padding: 20px;
   }
   
   .trip-card .trip-card-modal.active {
@@ -105,4 +112,70 @@
   }
   
   
+  /* Add this CSS to your stylesheet */
+.strikethrough {
+    text-decoration: line-through;
+    color: #999; /* Change the color as desired */
+  }
   
+  /* Style for the table and headings */
+  .trip-container table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  
+  .trip-container th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .trip-container th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Style for the checkboxes */
+  .trip-container input[type="checkbox"] {
+    display: none;
+  }
+  
+  .trip-container  label {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .trip-container  label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .trip-container  input[type="checkbox"]:checked + label:before {
+    content: '\2713'; /* Checkmark symbol */
+    text-align: center;
+    line-height: 16px;
+    font-size: 14px;
+    color: #333; /* Color of the checkmark */
+    background-color: #fff;
+  }
+  .trip-container h2{
+    font-weight: bold;
+
+  }
+  .centerCities{
+    text-align: center;
+    justify-content: center;
+    padding: 2vh;
+  }

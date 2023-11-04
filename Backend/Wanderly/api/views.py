@@ -31,9 +31,7 @@ class PlacesToVisitByCity(generics.ListAPIView):
 
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        a = Places.objects.filter(city=city_id)
-        print(a)
-        return a
+        return Places.objects.filter(city=city_id)
 
 class AddToCartView(APIView):
     def post(self, request):
@@ -85,9 +83,7 @@ class ListSlangByCity(generics.ListAPIView):
     serializer_class = CitySlangSerializer
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        a = CitySlang.objects.filter(city=city_id)
-        print(a)
-        return a
+        return CitySlang.objects.filter(city=city_id)
 
 class SubmitCartView(APIView):
     def post(self, request):
@@ -115,3 +111,11 @@ class SubmitCartView(APIView):
                     return Response(tserializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class GetPlacesListByActivity(generics.ListAPIView):
+    serializer_class = PlacesListByActivitySerializer
+
+    def get_queryset(self):
+        city_id = self.kwargs.get('city_id')
+        activity = self.kwargs.get('activity')
+        return PlacesListByActivity.objects.filter(city=city_id,activity=activity)

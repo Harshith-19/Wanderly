@@ -11,6 +11,7 @@ def api_root(request, format=None):
         {
             "trending-popular-cities": reverse(
                 "popular-and-trending-cities", request=request, format=format
-            )
+            ),
+            'places-to-visit': reverse('places-to-visit-list',args=[1], request=request, format=format),
         }
     )

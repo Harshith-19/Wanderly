@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const citiesData = [
   {
@@ -31,6 +32,9 @@ const citiesData = [
 ];
 
 const BookingCards = () => {
+  const location = useLocation();
+  const data = location.state;
+  console.log(data);
   const [selectedCities, setSelectedCities] = useState([]);
   const navigate = useNavigate();
 

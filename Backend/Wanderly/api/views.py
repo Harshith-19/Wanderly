@@ -39,6 +39,7 @@ class PlacesToVisitByCity(generics.ListAPIView):
         return Places.objects.filter(city=city_id)
 
 class AddToCartView(APIView):
+    @csrf_exempt
     def post(self, request):
         serializer = AddToCartSerializer(data = request.data)
         if (serializer.is_valid()):

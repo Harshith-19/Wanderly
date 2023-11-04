@@ -6,32 +6,34 @@ const BookingCards = () => {
   const location = useLocation();
   const data = location.state;
 
-
   const [selectedCities, setSelectedCities] = useState([]);
   const navigate = useNavigate();
 
-  const handleCitySelect = (cityName) => {
-    if (selectedCities.includes(cityName)) {
-      setSelectedCities(selectedCities.filter((city) => city !== cityName));
+  const handleCitySelect = (city) => {
+    if (isSelected(city)) {
+      setSelectedCities(selectedCities.filter((selectedCity) => selectedCity.id !== city.id));
     } else {
-      setSelectedCities([...selectedCities, cityName]);
+      setSelectedCities([...selectedCities, city]);
     }
   };
 
+  const isSelected = (city) => {
+    return selectedCities.some((selectedCity) => selectedCity.id === city.id);
+  };
+
   const handleGoButtonClick = () => {
-    const selectedCitiesParam = selectedCities.join(',');
-    navigate('/itinerarycards', { state: { selectedCities: selectedCitiesParam } });
+    console.log(selectedCities);
+    navigate('/itinerarycards', { state: { selectedCities } });
   };
 
   const renderLastSelectedCityDetails = () => {
     const lastSelectedCity = selectedCities[selectedCities.length - 1];
-    const city = [...data.trending, ...data.popular].find((place) => place.city === lastSelectedCity);
 
-    if (city) {
+    if (lastSelectedCity) {
       return (
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-md mt-4">
-          <h2 className="text-xl font-bold">{city.city}</h2>
-          <p>{city.description}</p>
+          <h2 className="text-xl font-bold">{lastSelectedCity.city}</h2>
+          <p>{lastSelectedCity.description}</p>
         </div>
       );
     }
@@ -47,9 +49,9 @@ const BookingCards = () => {
           {data.trending.map((place, index) => (
             <div
               key={index}
-              onClick={() => handleCitySelect(place.city)}
+              onClick={() => handleCitySelect(place)}
               className={`cursor-pointer bg-white p-4 rounded-lg border border-gray-200 flex items-center justify-between transform hover:scale-105 transition-transform ${
-                selectedCities.includes(place.city) ? "shadow-md" : ""
+                isSelected(place) ? "shadow-md" : ""
               }`}
               style={{
                 position: 'relative',
@@ -74,8 +76,8 @@ const BookingCards = () => {
                 <input
                   type="checkbox"
                   className="h-6 w-6 rounded-full border-2 border-green-400 appearance-none checked:bg-green-500 checked:border-green-600 cursor-pointer"
-                  checked={selectedCities.includes(place.city)}
-                  onChange={() => handleCitySelect(place.city)}
+                  checked={isSelected(place)}
+                  onChange={() => handleCitySelect(place)}
                 />
               </div>
               <div className="w-4/5">
@@ -94,9 +96,9 @@ const BookingCards = () => {
           {data.popular.map((place, index) => (
             <div
               key={index}
-              onClick={() => handleCitySelect(place.city)}
+              onClick={() => handleCitySelect(place)}
               className={`cursor-pointer bg-white p-4 rounded-lg border border-gray-200 flex items-center justify-between transform hover:scale-105 transition-transform ${
-                selectedCities.includes(place.city) ? "shadow-md" : ""
+                isSelected(place) ? "shadow-md" : ""
               }`}
               style={{
                 position: 'relative',
@@ -121,8 +123,8 @@ const BookingCards = () => {
                 <input
                   type="checkbox"
                   className="h-6 w-6 rounded-full border-2 border-green-400 appearance-none checked:bg-green-500 checked:border-green-600 cursor-pointer"
-                  checked={selectedCities.includes(place.city)}
-                  onChange={() => handleCitySelect(place.city)}
+                  checked={isSelected(place)}
+                  onChange={() => handleCitySelect(place)}
                 />
               </div>
               <div className="w-4/5">

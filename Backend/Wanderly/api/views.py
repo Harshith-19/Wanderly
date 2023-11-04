@@ -25,9 +25,3 @@ class PopularAndTrendingCityListView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class PlacesToVisitList(generics.ListAPIView):
-    serializer_class = PlaceToVisitSerializer
-
-    def get_queryset(self):
-        city_id = self.kwargs.get('city_id')
-        return PlaceToVisit.objects.filter(city_id=city_id)

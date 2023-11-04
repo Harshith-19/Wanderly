@@ -23,5 +23,4 @@ urlpatterns = [
     path("", api_root),
     path('admin/', admin.site.urls),
     path('api/pt-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
-    path('api/places-to-visit/<int:city_id>/', PlacesToVisitList.as_view(), name='places-to-visit-list'),
 ]

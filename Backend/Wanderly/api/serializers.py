@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Festival, Cities, PlaceToVisit
+from .models import Festival, Cities, Places
 
 class FestivalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,7 +18,7 @@ class DetailsSerializer(serializers.Serializer):
     month = serializers.IntegerField()
     date = serializers.IntegerField()
 
-class PlaceToVisitSerializer(serializers.ModelSerializer):
+class PlacesToVisitSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PlaceToVisit
+        model = Places
         fields = ('name', 'description', 'image')

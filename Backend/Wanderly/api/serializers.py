@@ -4,14 +4,14 @@ from .models import *
 class FestivalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Festival
-        fields = ('id', 'festival', 'date')
+        fields = '__all__'
 
 class CitySerializer(serializers.ModelSerializer):
     festivals = FestivalSerializer(many=True, read_only=True)  # Use FestivalSerializer for the festivals field
 
     class Meta:
         model = Cities
-        fields = ('id', 'city', 'description', 'popular', 'festivals')
+        fields = '__all__'
 
 class DetailsSerializer(serializers.Serializer):
     Country = serializers.CharField(max_length = 100)

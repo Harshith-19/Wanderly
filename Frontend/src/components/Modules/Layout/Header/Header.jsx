@@ -20,7 +20,12 @@ const Header = () => {
     {
       href: "#home",
       title: "Home",
-    },
+    },{
+      
+      href: "#trending",
+      title: "Trending",
+    
+  },
     {
       href: "#about",
       title: "About",
@@ -28,7 +33,7 @@ const Header = () => {
     {
       href: "#contact",
       title: "Contact",
-    }
+    },
   ];
   return (
     

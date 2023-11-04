@@ -3,9 +3,11 @@ from rest_framework.response import Response
 from .models import *
 from rest_framework import status, generics
 from .serializers import *
+from django.views.decorators.csrf import csrf_exempt
 import json
 
 class PopularAndTrendingCityListView(APIView):
+    @csrf_exempt
     def post(self, request):
         serializer = DetailsSerializer(data=request.data)
         if (serializer.is_valid()):
@@ -89,6 +91,7 @@ class ListSlangByCity(generics.ListAPIView):
         return CitySlang.objects.filter(city=city_id)
 
 class SubmitCartView(APIView):
+    @csrf_exempt
     def post(self, request):
         serializer = SubmitCartSerializer(data=request.data)
         if (serializer.is_valid()):

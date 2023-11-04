@@ -16,10 +16,11 @@ class Cities(models.Model):
     festivals = models.ManyToManyField(Festival, blank=True)
 
     @property
-    def is_trending(self):
+    def is_trending(self, month, day):
         today = datetime.date.today()
-        next = today + datetime.timedelta(days=15)
-        previous = today - datetime.timedelta(days=15)
+        current_year = today.year
+        next = datetime.date(current_year, month, day) + datetime.timedelta(days=15)
+        previous = datetime.date(current_year, month, day) - datetime.timedelta(days=15)
         trending_festivals = self.festivals.filter(date__range=(previous, next))
         return trending_festivals.exists()
 

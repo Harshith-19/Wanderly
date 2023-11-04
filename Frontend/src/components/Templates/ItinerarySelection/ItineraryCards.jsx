@@ -6,7 +6,9 @@ const ItineraryCards = () => {
   const location = useLocation();
   const selectedCities = location.state.selectedCities || [];
 
-  const [selectedCity, setSelectedCity] = useState(selectedCities.length > 0 ? selectedCities[0].city : "");
+  const [selectedCity, setSelectedCity] = useState(
+    selectedCities.length > 0 ? selectedCities[0].city : ""
+  );
   const [selectedCategory, setSelectedCategory] = useState("places");
   const [selectedItems, setSelectedItems] = useState(new Set());
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
@@ -31,7 +33,6 @@ const ItineraryCards = () => {
       navigate('/mytrips');
     }, 2000);
   };
-
 
   useEffect(() => {
     fetchCityData(selectedCity);
@@ -58,7 +59,7 @@ const ItineraryCards = () => {
       fetch(`http://127.0.0.1:8000/api/cuisine/${cityName.toLowerCase()}`)
         .then((response) => response.json())
         .then((foodData) => {
-          console.log(foodData)
+          console.log(foodData);
           setData((prevData) => ({ ...prevData, food: foodData }));
         })
         .catch((error) => console.error("Error fetching food data:", error));
@@ -90,9 +91,40 @@ const ItineraryCards = () => {
 
     if (updatedCheckboxes[index]) {
       updatedSelectedItems.add(item);
-    } else {
+      // Prepare the data for the API request
+      const requestData = {
+        user: "Harshith", // Hardcoded user for now
+        cityID: selectedCities.find(city => city.city === selectedCity).id,
+        addType: selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1), // Capitalize the category
+        TypeID: item.id, // Assuming each item has an 'id' property
+      };
 
+      // Perform the API call to add the item to the cart
+      fetch("http://127.0.0.1:8000/api/add-to-cart/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Failed to add item to the cart");
+          }
+        })
+        .then((data) => {
+          // Handle the response data as needed (e.g., show a success message)
+          console.log("Item added to the cart:", data);
+        })
+        .catch((error) => {
+          console.error("Error adding item to the cart:", error);
+        });
+    } else {
       updatedSelectedItems.delete(item);
+      // You can add logic here to remove the item from the cart (if needed)
+      // You might need to make another API call to remove items from the cart
     }
 
     setSelectedCheckboxes(updatedCheckboxes);
@@ -171,25 +203,8 @@ const ItineraryCards = () => {
           ))}
         </ul>
       </div>
-
-      <div className="w-1/4 p-4">
-        <div className="cart">
-          <h2 className="mb-4">Selected Items</h2>
-          {Array.from(selectedItems).map((item, index) => (
-            <div key={index} className="flex items-center border p-2 mb-2 rounded">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-12 h-12 object-cover rounded-full mr-2"
-              />
-              <div>
-                <h3 className="text-lg font-semibold">{item.name}</h3>
-                <p className="text-sm text-gray-600">{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button
+      <div>
+      <button
           onClick={handleSubmit}
           className={`border rounded-full border-green-600 text-green-900 text-md md:text-md px-2 md:px-8 py-2 cursor-pointer ${
             formSubmitted ? "bg-green-500 text-white" : ""
@@ -197,6 +212,7 @@ const ItineraryCards = () => {
         >
           {formSubmitted ? "Form Submitted" : "Submit Form"}
         </button>
+      
       </div>
     </div>
   );

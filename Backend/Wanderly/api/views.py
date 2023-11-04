@@ -31,7 +31,9 @@ class PlacesToVisitByCity(generics.ListAPIView):
 
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        return Places.objects.filter(city=city_id)
+        a = Places.objects.filter(city=city_id)
+        print(a)
+        return a
 
 class AddToCartView(APIView):
     def post(self, request):
@@ -83,7 +85,9 @@ class ListSlangByCity(generics.ListAPIView):
     serializer_class = CitySlangSerializer
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        return CitySlang.objects.filter(city=city_id)
+        a = CitySlang.objects.filter(city=city_id)
+        print(a)
+        return a
 
 class SubmitCartView(APIView):
     def post(self, request):
@@ -112,11 +116,29 @@ class SubmitCartView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class GetPlacesListByActivity(generics.ListAPIView):
-    serializer_class = PlacesListByActivitySerializer
-
-    def get_queryset(self):
-        city_id = self.kwargs.get('city_id')
-        activity = self.kwargs.get('activity')
-        response = PlacesListByActivity.objects.filter(city=city_id)
-        return response
+class ViewTripView(APIView):
+    def get(self):
+        tripID = self.kwargs.get('TripID')
+        trip = Trip.objects.get(pk=tripID)
+        tripDetails = {}
+        jsonDec = json.decoder.JSONDecoder()
+        itinerary = jsonDec.decode(trip.itinerary)
+        for i in itinerary.keys():
+            city = Cities.objects.get(pk=int(i)).city
+            tripDetails[city] = {}
+            for j in itinerary[i].keys():
+                tripDetails[city][j] = []
+                for k in itinerary[i][j]:
+                    if (j == 'Places'):
+                        details = Places.objects.get(pk=int(k))
+                        serializer = PlacesToVisitSerializer(details)
+                        tripDetails[city][j].append(serializer)
+                    elif (j == 'Cuisine'):
+                        details = Cuisine.objects.get(pk=int(k))
+                        serializer = CuisineSerializer(details)
+                        tripDetails[city][j].append(serializer)
+                    elif (j == 'Unique'):
+                        details = Unique.objects.get(pk=int(k))
+                        serializer = UniqueSerializer(details)
+                        tripDetails[city][j].append(serializer)
+        return Response(tripDetails, status=status.HTTP_200_OK)

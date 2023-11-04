@@ -79,6 +79,8 @@ class UniqueByCity(generics.ListAPIView):
         city_id = self.kwargs.get('city_id')
         return Unique.objects.filter(city=city_id)
 
+
+
 class SubmitCartView(APIView):
     def post(self, request):
         serializer = SubmitCartSerializer(data=request.data)

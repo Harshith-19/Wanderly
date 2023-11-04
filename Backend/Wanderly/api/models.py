@@ -69,11 +69,11 @@ class Trip(models.Model):
         return self.user
 
 
-class Slangs(models.Model):
-    city = models.ForeignKey('Cities', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    meaning = models.TextField()
-    language = models.TextField()
+class CitySlang(models.Model):
+    city = models.TextField()
+    word = models.CharField(max_length=100)
+    meaning = models.CharField(max_length=100)
+    language = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.word

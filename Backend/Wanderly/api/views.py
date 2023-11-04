@@ -118,4 +118,5 @@ class GetPlacesListByActivity(generics.ListAPIView):
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
         activity = self.kwargs.get('activity')
-        return PlacesListByActivity.objects.filter(city=city_id,activity=activity)
+        response = PlacesListByActivity.objects.filter(city=city_id)
+        return response

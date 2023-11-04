@@ -4,7 +4,6 @@ from .models import *
 from rest_framework import status, generics
 from .serializers import *
 import json
-from django.views.decorators.csrf import csrf_exempt
 
 class PopularAndTrendingCityListView(APIView):
     def post(self, request):
@@ -35,7 +34,6 @@ class PlacesToVisitByCity(generics.ListAPIView):
         return Places.objects.filter(city=city_id)
 
 class AddToCartView(APIView):
-    @csrf_exempt
     def post(self, request):
         serializer = AddToCartSerializer(data = request.data)
         if (serializer.is_valid()):
@@ -87,9 +85,7 @@ class ListSlangByCity(generics.ListAPIView):
         city_id = self.kwargs.get('city_id')
         return CitySlang.objects.filter(city=city_id)
 
-
 class SubmitCartView(APIView):
-    @csrf_exempt
     def post(self, request):
         serializer = SubmitCartSerializer(data=request.data)
         if (serializer.is_valid()):
@@ -117,7 +113,6 @@ class SubmitCartView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ViewTripView(APIView):
-    @csrf_exempt
     def get(self, request, *args, **kwargs):
         tripID = self.kwargs.get('TripID')
         trip = Trip.objects.get(pk=tripID)

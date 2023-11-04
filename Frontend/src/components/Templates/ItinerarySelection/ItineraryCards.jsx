@@ -6,27 +6,6 @@ const ItineraryCards = () => {
   const location = useLocation();
   const selectedCitiesParam = location.state.selectedCities;
   const selectedCities = selectedCitiesParam ? selectedCitiesParam.split(",") : [];
- const apiUrl = 'http://127.0.0.1:8000/api/places-to-visit/mumbai/';
-
-  useEffect(() => {
-    // Make the API call inside the useEffect hook when the component mounts
-    fetch(apiUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((apiData) => {
-        // Log the fetched data to the console
-        console.log(apiData);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []); // The empty dependency array ensures this effect runs once on component mount
-
-
 
   const citiesData = [
     {

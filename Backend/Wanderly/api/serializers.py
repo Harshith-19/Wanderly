@@ -38,3 +38,23 @@ class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields  = '__all__'
+
+class UniqueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Unique
+        fields = ('name', 'description', 'image')
+
+class SubmitCartSerializer(serializers.Serializer):
+    user = serializers.CharField(max_length=100)
+
+class TripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trip
+        fields = '__all__'
+
+from rest_framework import serializers
+
+class CitySlangSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CitySlang
+        fields = ('word', 'meaning', 'language')

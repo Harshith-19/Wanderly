@@ -31,7 +31,9 @@ class PlacesToVisitByCity(generics.ListAPIView):
 
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        return Places.objects.filter(city=city_id)
+        a = Places.objects.filter(city=city_id)
+        print(a)
+        return a
 
 class AddToCartView(APIView):
     def post(self, request):
@@ -71,3 +73,45 @@ class CuisineByCity(generics.ListAPIView):
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
         return Cuisine.objects.filter(city=city_id)
+
+class UniqueByCity(generics.ListAPIView):
+    serializer_class = UniqueSerializer
+
+    def get_queryset(self):
+        city_id = self.kwargs.get('city_id')
+        return Unique.objects.filter(city=city_id)
+
+class ListSlangByCity(generics.ListAPIView):
+    serializer_class = CitySlangSerializer
+    def get_queryset(self):
+        city_id = self.kwargs.get('city_id')
+        a = CitySlang.objects.filter(city=city_id)
+        print(a)
+        return a
+
+class SubmitCartView(APIView):
+    def post(self, request):
+        serializer = SubmitCartSerializer(data=request.data)
+        if (serializer.is_valid()):
+            user = serializer.validated_data['user']
+            cart = Cart.objects.get(user=user)
+            if (cart is not None):
+                jsonDec = json.decoder.JSONDecoder()
+                itinerary = jsonDec.decode(cart.itinerary)
+                cityList = list(itinerary.keys())
+                cityID = int(cityList[0])
+                country = Cities.objects.get(pk=cityID).country
+                trip_data = {
+                    "user" : user,
+                    "itinerary" : cart.itinerary,
+                    "Country" : country,
+                }
+                tserializer = TripSerializer(data=trip_data)
+                if (tserializer.is_valid()):
+                    tserializer.save()
+                    cart.delete()
+                    return Response(status=status.HTTP_200_OK)
+                else:
+                    return Response(tserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

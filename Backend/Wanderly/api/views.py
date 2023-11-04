@@ -128,15 +128,15 @@ class ViewTripView(APIView):
                     if (j == 'Places'):
                         details = Places.objects.get(pk=int(k))
                         serializer = PlacesToVisitSerializer(details)
-                        tripDetails[city][j].append(serializer)
+                        tripDetails[city][j].append(serializer.data)
                     elif (j == 'Cuisine'):
                         details = Cuisine.objects.get(pk=int(k))
                         serializer = CuisineSerializer(details)
-                        tripDetails[city][j].append(serializer)
+                        tripDetails[city][j].append(serializer.data)
                     elif (j == 'Unique'):
                         details = Unique.objects.get(pk=int(k))
                         serializer = UniqueSerializer(details)
-                        tripDetails[city][j].append(serializer)
+                        tripDetails[city][j].append(serializer.data)
         return Response(tripDetails, status=status.HTTP_200_OK)
 
 class GetPlacesListByActivity(generics.ListAPIView):

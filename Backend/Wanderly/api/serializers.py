@@ -58,3 +58,8 @@ class CitySlangSerializer(serializers.ModelSerializer):
     class Meta:
         model = CitySlang
         fields = ('word', 'meaning', 'language')
+
+class PlacesListByActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlacesListByActivity
+        fields = ('place_name', 'description', 'address', 'contact')

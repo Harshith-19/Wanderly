@@ -14,7 +14,7 @@ class Cities(models.Model):
     popular = models.BooleanField()
     description = models.TextField()
     festivals = models.ManyToManyField(Festival, blank=True)
-    # image = models.ImageField(upload_to='places_to_visit/')
+    image = models.ImageField(upload_to='cities/')
 
     def is_trending(self, month, day):
         today = datetime.date.today()

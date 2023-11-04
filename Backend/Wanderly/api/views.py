@@ -71,3 +71,10 @@ class CuisineByCity(generics.ListAPIView):
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
         return Cuisine.objects.filter(city=city_id)
+
+class UniqueByCity(generics.ListAPIView):
+    serializer_class = UniqueSerializer
+
+    def get_queryset(self):
+        city_id = self.kwargs.get('city_id')
+        return Unique.objects.filter(city=city_id)

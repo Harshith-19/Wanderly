@@ -113,7 +113,7 @@ class SubmitCartView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ViewTripView(APIView):
-    def get(self):
+    def get(self, request, *args, **kwargs):
         tripID = self.kwargs.get('TripID')
         trip = Trip.objects.get(pk=tripID)
         tripDetails = {}
@@ -128,15 +128,15 @@ class ViewTripView(APIView):
                     if (j == 'Places'):
                         details = Places.objects.get(pk=int(k))
                         serializer = PlacesToVisitSerializer(details)
-                        tripDetails[city][j].append(serializer)
+                        tripDetails[city][j].append(serializer.data)
                     elif (j == 'Cuisine'):
                         details = Cuisine.objects.get(pk=int(k))
                         serializer = CuisineSerializer(details)
-                        tripDetails[city][j].append(serializer)
+                        tripDetails[city][j].append(serializer.data)
                     elif (j == 'Unique'):
                         details = Unique.objects.get(pk=int(k))
                         serializer = UniqueSerializer(details)
-                        tripDetails[city][j].append(serializer)
+                        tripDetails[city][j].append(serializer.data)
         return Response(tripDetails, status=status.HTTP_200_OK)
 
 class GetPlacesListByActivity(generics.ListAPIView):
@@ -147,3 +147,16 @@ class GetPlacesListByActivity(generics.ListAPIView):
         activity = self.kwargs.get('activity')
         response = PlacesListByActivity.objects.filter(city=city_id)
         return response
+
+class ListTripView(APIView):
+    def get(self, request, *args, **kwargs):
+        user = self.kwargs.get('user')
+        trips = Trip.objects.filter(user=user)
+        tripList = []
+        for i in trips:
+            tripDict = {
+                "id" : i.id,
+                "country" : i.Country,
+            }
+            tripList.append(tripDict)
+        return Response(tripList, status=status.HTTP_200_OK)

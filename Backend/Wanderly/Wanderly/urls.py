@@ -16,12 +16,19 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from api.views import PopularAndTrendingCityListView, PlacesToVisitByCity
+from api.views import *
 from api.root import api_root
 
 urlpatterns = [
     path("", api_root),
     path('admin/', admin.site.urls),
     path('api/pt-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
-    path('api/places-to-visit/<int:city_id>/', PlacesToVisitByCity.as_view(), name='places-to-visit-list'),
+    path('api/places-to-visit/<str:city_id>/', PlacesToVisitByCity.as_view(), name='places-to-visit-list'),
+    path('api/cuisine/<str:city_id>/', CuisineByCity.as_view(), name='cuisine-list'),
+    path('api/unique/<str:city_id>/', UniqueByCity.as_view(), name='unique-list'),
+    path('api/places-by-activity/<str:city_id>/<str:activity>/', GetPlacesListByActivity.as_view(), name='places-by-activity'),
+    path('api/slangs/<str:city_id>/', ListSlangByCity.as_view(), name='city-slangs'),
+    path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
+    path('api/submit-cart/', SubmitCartView.as_view(), name='submit-cart'),
+    path('api/view-trip/<int:TripID>/', ViewTripView.as_view(), name='trip-view'),
 ]

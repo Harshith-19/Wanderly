@@ -28,10 +28,61 @@ class Cities(models.Model):
         return self.city
 
 class Places(models.Model):
-    city = models.ForeignKey('Cities', on_delete=models.CASCADE) 
+    city = models.TextField()
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='places_to_visit/')
 
     def __str__(self):
         return self.name
+
+class Cuisine(models.Model):
+    city = models.TextField()
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='cuisine/')
+
+    def __str__(self):
+        return self.name
+
+class Cart(models.Model):
+    user = models.CharField(max_length=100)
+    itinerary = models.TextField(default='{}')
+
+    def __str__(self):
+        return self.user
+
+class Unique(models.Model):
+    city = models.TextField()
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='places_to_visit/')
+
+    def __str__(self):
+        return self.name
+
+class Trip(models.Model):
+    user = models.CharField(max_length=100)
+    itinerary = models.TextField()
+    Country = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user
+
+
+class CitySlang(models.Model):
+    city = models.TextField()
+    word = models.CharField(max_length=100)
+    meaning = models.CharField(max_length=100)
+    language = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.word
+
+class PlacesListByActivity(models.Model):
+    city = models.TextField()
+    activity = models.TextField()
+    place_name = models.TextField()
+    description = models.TextField()
+    address = models.TextField()
+    contact = models.TextField()

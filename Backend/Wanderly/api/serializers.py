@@ -22,3 +22,8 @@ class PlacesToVisitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Places
         fields = ('name', 'description', 'image')
+
+class CuisineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Places
+        fields = ('name', 'description', 'image')

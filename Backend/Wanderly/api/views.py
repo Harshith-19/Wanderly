@@ -30,4 +30,7 @@ class PlacesToVisitByCity(generics.ListAPIView):
 
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        return Places.objects.filter(city_id=city_id)
+        return Response(Places.objects.filter(city=city_id), status=status.HTTP_200_OK)
+
+
+

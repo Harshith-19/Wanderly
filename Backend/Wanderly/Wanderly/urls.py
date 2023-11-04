@@ -26,7 +26,9 @@ urlpatterns = [
     path('api/places-to-visit/<str:city_id>/', PlacesToVisitByCity.as_view(), name='places-to-visit-list'),
     path('api/cuisine/<str:city_id>/', CuisineByCity.as_view(), name='cuisine-list'),
     path('api/unique/<str:city_id>/', UniqueByCity.as_view(), name='unique-list'),
+    path('api/places-by-activity/<str:city_id>/<str:activity>/', GetPlacesListByActivity.as_view(), name='places-by-activity'),
     path('api/slangs/<str:city_id>/', ListSlangByCity.as_view(), name='city-slangs'),
     path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
     path('api/submit-cart/', SubmitCartView.as_view(), name='submit-cart'),
+    path('api/view-trip/<int:TripID>/', ViewTripView.as_view(), name='trip-view'),
 ]

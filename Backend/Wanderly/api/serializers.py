@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Festival, Cities, Places, Cart
+from .models import *
 
 class FestivalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,7 +25,7 @@ class PlacesToVisitSerializer(serializers.ModelSerializer):
 
 class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Places
+        model = Cuisine
         fields = ('name', 'description', 'image')
     
 class AddToCartSerializer(serializers.Serializer):

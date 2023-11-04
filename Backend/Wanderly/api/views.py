@@ -31,7 +31,7 @@ class PlacesToVisitByCity(generics.ListAPIView):
 
     def get_queryset(self):
         city_id = self.kwargs.get('city_id')
-        return Response(Places.objects.filter(city=city_id), status=status.HTTP_200_OK)
+        return Places.objects.filter(city=city_id)
 
 class AddToCartView(APIView):
     def post(self, request):
@@ -64,3 +64,10 @@ class AddToCartView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class CuisineByCity(generics.ListAPIView):
+    serializer_class = CuisineSerializer
+
+    def get_queryset(self):
+        city_id = self.kwargs.get('city_id')
+        return Cuisine.objects.filter(city=city_id)

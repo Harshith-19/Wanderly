@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Festival, Cities, Places, Cuisine, Cart
+from .models import *
 
 admin.site.register(Festival)
 admin.site.register(Cities)

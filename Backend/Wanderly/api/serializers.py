@@ -55,7 +55,6 @@ class TripSerializer(serializers.ModelSerializer):
 from rest_framework import serializers
 
 class CitySlangSerializer(serializers.ModelSerializer):
-    language = serializers.CharField(source='city.language')  # Include the "language" field
     class Meta:
         model = CitySlang
         fields = ('word', 'meaning', 'language')

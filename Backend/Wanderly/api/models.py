@@ -78,3 +78,11 @@ class CitySlang(models.Model):
 
     def __str__(self):
         return self.word
+
+class PlacesListByActivity(models.Model):
+    city = models.TextField()
+    activity = models.TextField()
+    place_name = models.TextField()
+    description = models.TextField()
+    address = models.TextField()
+    contact = models.TextField()

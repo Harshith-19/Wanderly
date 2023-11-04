@@ -37,10 +37,10 @@ class Places(models.Model):
         return self.name
 
 class Cuisine(models.Model):
-    city = models.ForeignKey('Cities', on_delete=models.CASCADE)
+    city = models.TextField()
     name = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='places_to_visit/')
+    image = models.ImageField(upload_to='cuisine/')
 
     def __str__(self):
         return self.name
@@ -53,7 +53,7 @@ class Cart(models.Model):
         return self.user
 
 class Unique(models.Model):
-    city = models.ForeignKey('Cities', on_delete=models.CASCADE)
+    city = models.TextField()
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='places_to_visit/')

@@ -38,3 +38,8 @@ class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields  = '__all__'
+
+class UniqueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Unique
+        fields = ('name', 'description', 'image')

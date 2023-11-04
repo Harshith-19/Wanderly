@@ -92,9 +92,15 @@ class SubmitCartView(APIView):
             user = serializer.validated_data['user']
             cart = Cart.objects.get(user=user)
             if (cart is not None):
+                jsonDec = json.decoder.JSONDecoder()
+                itinerary = jsonDec.decode(cart.itinerary)
+                cityList = list(itinerary.keys())
+                cityID = int(cityList[0])
+                country = Cities.objects.get(pk=cityID).country
                 trip_data = {
                     "user" : user,
-                    "itinerary" : cart.itinerary
+                    "itinerary" : cart.itinerary,
+                    "Country" : country,
                 }
                 tserializer = TripSerializer(data=trip_data)
                 if (tserializer.is_valid()):

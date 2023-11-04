@@ -30,4 +30,5 @@ urlpatterns = [
     path('api/slangs/<str:city_id>/', ListSlangByCity.as_view(), name='city-slangs'),
     path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
     path('api/submit-cart/', SubmitCartView.as_view(), name='submit-cart'),
+    path('api/view-trip/<int:TripID>/', ViewTripView.as_view(), name='trip-view'),
 ]

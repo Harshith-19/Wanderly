@@ -28,7 +28,7 @@ class Cities(models.Model):
         return self.city
 
 class Places(models.Model):
-    city = models.ForeignKey('Cities', on_delete=models.CASCADE) 
+    city = models.TextField()
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='places_to_visit/')
@@ -51,3 +51,12 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.user
+
+class Unique(models.Model):
+    city = models.ForeignKey('Cities', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='places_to_visit/')
+
+    def __str__(self):
+        return self.name

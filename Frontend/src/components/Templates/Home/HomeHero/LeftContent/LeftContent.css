@@ -36,7 +36,7 @@ font-weight: 600;
 font-size: 11px;
 letter-spacing: 0.1em;
 line-height: 20px;
-color: #09f;
+color: # rgb(0, 255, 136);
 margin-left: 2px;
 text-transform: uppercase;
 white-space: nowrap;
@@ -65,7 +65,7 @@ justify-content: center;
 width: auto;
 min-width: 197px;
 height: 55px;
-background: #09f;
+background: rgb(0, 255, 136);
 border-radius: 8px;
 filter: drop-shadow(0px 0px 3px #000);
 -webkit-filter: drop-shadow(0px 0px 3px #000);
@@ -74,9 +74,9 @@ cursor:pointer;
 }
 .button-container:hover, 
 .button-container:focus {
-background: #09f;
-filter: drop-shadow(0px 0px 3px #09f);
--webkit-filter: drop-shadow(0px 0px 3px #09f);
+background: rgb(0, 255, 136);
+filter: drop-shadow(0px 0px 3px  rgb(0, 255, 136));
+-webkit-filter: drop-shadow(0px 0px 3px  rgb(0, 255, 136));
 }
 /* -- button -- */
 .button-container .button {
@@ -101,9 +101,9 @@ color: #fff;
 .button-container:hover .button:active  {
 background: #000;
 color: #fff;
-background: #09f;
-filter: drop-shadow(0px 0px 3px #09f);
--webkit-filter: drop-shadow(0px 0px 3px #09f);
+background:  rgb(0, 255, 136);
+filter: drop-shadow(0px 0px 3px  rgb(0, 255, 136));
+-webkit-filter: drop-shadow(0px 0px 3px  rgb(0, 255, 136));
 }
 /* -- button ok -- */
 .button-container .button.ok {
@@ -112,13 +112,13 @@ color: #fff;
 }
 .button-container:hover .button.ok:hover {
 background: #131313;
-color: #09f;
-text-shadow: 0px 0px 10px #09f;
--webkit-text-shadow: 0px 0px 10px #09f;
+color:   rgb(0, 255, 136);
+text-shadow: 0px 0px 10px  rgb(0, 255, 136);
+-webkit-text-shadow: 0px 0px 10px  rgb(0, 255, 136);
 }
 .button-container:hover .button.ok:active  {
 color: #fff;
-background: #09f;
+background:  rgb(0, 255, 136);
 filter: drop-shadow(0px 0px 3px #000);
 -webkit-filter: drop-shadow(0px 0px 3px #000);
 }
@@ -146,7 +146,6 @@ gap: 20px;
 height: auto;
 padding:5em 2em;
 border-radius: 7px;
-background-color: rgba(255,255,255,1);
 
 }
 .reservation-box .static {
@@ -189,7 +188,7 @@ border-bottom: 2px solid transparent;
 .reservation-box .info:focus,
 .reservation-box .info:active {
 color: #000;
-border-bottom: 2px solid #09f;
+border-bottom: 2px solid rgb(0, 255, 136);
 }
 
 /* RESERVATION BOX SMALL */
@@ -239,4 +238,12 @@ input::placeholder {
   color: #999; /* Set the color of the placeholder text */
   font-style: italic; /* Make the text italic (optional) */
   padding: 5%;
+}
+
+.country-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

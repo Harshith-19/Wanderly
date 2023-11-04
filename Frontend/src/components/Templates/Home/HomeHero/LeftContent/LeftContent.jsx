@@ -5,8 +5,6 @@ import HeadingDecor from "../../../../../assets/heroSection/heading-decor.png";
 import ReactVisibilitySensor from "react-visibility-sensor";
 
 const LeftContent = () => {
-
-  // Automatically set the date for check-in (today) and checkout (tomorrow)
   useEffect(() => {
     const today = new Date();
     const tomorrow = new Date(today);
@@ -33,7 +31,7 @@ const LeftContent = () => {
       offset={{ top: 400 }}
       onChange={(isVisible) => isVisible && setVisible(isVisible)}
     >
-      <div className='overflow-hidden leftPadding'>
+      <div className='overflow-hidden leftPadding' style={{ backgroundColor: 'transparent' }}>
         <motion.div
           initial='invisible'
           animate={visible ? "visible" : "invisible"}
@@ -42,7 +40,7 @@ const LeftContent = () => {
           className='text-center md:text-left'
         >
             <div className={`reservation-box }`}>
-  <div className='hero-title font-bold text-5xl sm:text-6xl'>
+  <div className='hero-title font-bold text-5xl sm:text-6xl'  style={{ backgroundColor: 'transparent' }}>
     Embrace,{" "}
     <div className='inline-block w-fit relative'>
       <span>world's beauty</span>

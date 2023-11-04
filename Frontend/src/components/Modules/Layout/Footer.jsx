@@ -69,68 +69,44 @@ const Footer = () => {
               </div>
               <div className='grid grid-cols-3 col-span-2'>
                 {footerLinks.map(({ title, links }) => (
-                  <motion.div
+                  <div
                     key={title}
-                    variants={variant}
-                    animate={visible ? "show" : "hidden"}
                   >
-                    <motion.div
-                      variants={titleVariant}
+                    <div
                       className='text-[#080809] font-bold text-lg mb-3'
                     >
                       {title}
-                    </motion.div>
+                    </div>
                     {links.map((link, i) => (
                       <motion.div
                         className='group text-primaryLight font-semibold py-1 w-fit mx-auto cursor-pointer'
                         key={i}
-                        variants={{
-                          hidden: {
-                            y: 200,
-                            opacity: 0,
-                          },
-                          show: {
-                            y: 0,
-                            opacity: 1,
-                            transition: {
-                              duration: 1,
-                            },
-                          },
-                        }}
+                        
                       >
                         {link}
                         <div className='bg-primaryLight w-0 transition-all duration-300 h-[1px] group-hover:w-full'></div>
                       </motion.div>
                     ))}
-                  </motion.div>
+                  </div>
                 ))}
               </div>
               <div className='col-span-1'>
                 <div className='flex items-start justify-center'>
-                  <motion.div
+                  <div
                     className='bg-white rounded-full shadow-[0_2px_10px_0px_rgba(0,0,0,0.1)] p-4 mx-2'
-                    variants={bounceVariants}
-                    animate={visible && "start"}
-                    transition={{ duration: 1 }}
                   >
                     <FaFacebookF className='text-[#080809] text-xl' />
-                  </motion.div>
-                  <motion.div
+                  </div>
+                  <div
                     className='bg-white rounded-full shadow-[0_2px_10px_0px_rgba(0,0,0,0.1)] p-4 mx-2'
-                    variants={bounceVariants}
-                    animate={visible && "start"}
-                    transition={{ duration: 1, delay: 1 }}
                   >
                     <AiFillInstagram className='text-[#080809] text-xl' />
-                  </motion.div>
-                  <motion.div
+                  </div>
+                  <div
                     className='bg-white rounded-full shadow-[0_2px_10px_0px_rgba(0,0,0,0.1)] p-4 mx-2'
-                    variants={bounceVariants}
-                    animate={visible && "start"}
-                    transition={{ duration: 1, delay: 2 }}
                   >
                     <AiOutlineTwitter className='text-[#080809] text-xl' />
-                  </motion.div>
+                  </div>
                 </div>
                 <div className='text-primaryLight text-lg font-semibold my-3'>
                   Discover our app

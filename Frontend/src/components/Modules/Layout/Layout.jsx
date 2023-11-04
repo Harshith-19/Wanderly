@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header/Header";
 
-import LayoutDecore from "../../../assets/layout-decore.png";
+import LayoutDecore from "../../../assets/layoutDecore.png";
 
 const Layout = ({ children }) => {
   return (
@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <img
         src={LayoutDecore}
         alt='Decore'
-        className='-z-10 absolute left-[1000px] bottom-[390px] h-[1100px] overflow-hidden'
+        className='-z-10 absolute right-0 top-0 h-[900px] overflow-hidden'
       />
       <Header />
       {children}

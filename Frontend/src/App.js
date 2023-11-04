@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HeroSection from "./components/Templates/Home/HomeHero/HeroSection";
 import BookingInput from "./components/Templates/Booking/BookingInput";
 import BookingCards from "./components/Templates/Booking/BookingCards";
+import SlangPage from "./components/Templates/Slangs/slangs";
+import ItineraryCards from "./components/Templates/ItinerarySelection/ItineraryCards";
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="/" element={<Container><HeroSection /></Container>} />
         <Route path="/booking" element={<Container><BookingInput/></Container>} />
         <Route path="/bookingCards" element={<Container><BookingCards/></Container>} />
+        <Route path="/itinerarycards" element={<Container><ItineraryCards/></Container>} />
+        <Route path="/slangs" element={<Container><SlangPage/></Container>} />
         
       </Routes>
       

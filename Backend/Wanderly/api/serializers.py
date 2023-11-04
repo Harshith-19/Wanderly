@@ -21,12 +21,12 @@ class DetailsSerializer(serializers.Serializer):
 class PlacesToVisitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Places
-        fields = ('name', 'description', 'image')
+        fields = ('id', 'name', 'description', 'image')
 
 class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuisine
-        fields = ('name', 'description', 'image')
+        fields = ('id', 'name', 'description', 'image')
     
 class AddToCartSerializer(serializers.Serializer):
     user = serializers.CharField(max_length=100)
@@ -42,7 +42,7 @@ class CartSerializer(serializers.ModelSerializer):
 class UniqueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unique
-        fields = ('name', 'description', 'image')
+        fields = ('id', 'name', 'description', 'image')
 
 class SubmitCartSerializer(serializers.Serializer):
     user = serializers.CharField(max_length=100)
@@ -57,9 +57,9 @@ from rest_framework import serializers
 class CitySlangSerializer(serializers.ModelSerializer):
     class Meta:
         model = CitySlang
-        fields = ('word', 'meaning', 'language')
+        fields = ('id', 'word', 'meaning', 'language')
 
 class PlacesListByActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = PlacesListByActivity
-        fields = ('place_name', 'description', 'address', 'contact')
+        fields = ('id', 'place_name', 'description', 'address', 'contact')

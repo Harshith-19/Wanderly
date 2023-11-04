@@ -31,4 +31,5 @@ urlpatterns = [
     path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
     path('api/submit-cart/', SubmitCartView.as_view(), name='submit-cart'),
     path('api/view-trip/<int:TripID>/', ViewTripView.as_view(), name='trip-view'),
+    path('api/list-trip/<str:user>/', ListTripView.as_view(), name='trip-list'),
 ]

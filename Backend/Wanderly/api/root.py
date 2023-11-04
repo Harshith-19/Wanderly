@@ -22,5 +22,8 @@ def api_root(request, format=None):
             "view-trip": reverse(
                 "trip-view",args=[1], request=request, format=format
             ),
+            "list-trip": reverse(
+                "trip-list",args=[1], request=request, format=format
+            ),
         }
     )

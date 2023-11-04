@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ItineraryCards = () => {
   const location = useLocation();
@@ -40,7 +41,7 @@ const ItineraryCards = () => {
       things: [
         { name: "Sultanpur National Park", desc: "A bird sanctuary with a variety of migratory and resident bird species.", img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/c8/82/44/sultanpur-national-park.jpg?w=1200&h=-1&s=1" },
         { name: "Ambience Mall", desc: "One of the largest shopping malls in India with numerous retail outlets and entertainment options.", img: "https://www.imagesbof.in/wp-content/uploads/2022/02/Ambience-Mall_Gurgaon.jpg" },
-        // Add more things to do for Gurgaon
+        
       ],
     },
     {
@@ -48,17 +49,17 @@ const ItineraryCards = () => {
       places: [
         { name: "India Gate", desc: "A war memorial and iconic landmark in Delhi.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
         { name: "Red Fort", desc: "A UNESCO World Heritage Site and historic fort complex.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
-        // Add more places for Delhi
+        
       ],
       food: [
         { name: "Biryani", desc: "A flavorful rice dish with spices, meat, and aromatic herbs.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
         { name: "Chole Bhature", desc: "A popular North Indian dish consisting of spicy chickpea curry and fried bread.", img: "https://www.google.com/imgres?imgurl=https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%252FEdit%252F2023-03-papdi-chaat%252Fpapdi-chaat-01&tbnid=2pReNAhck-AeHM&vet=1&imgrefurl=https://www.thekitchn.com/papdi-chaat-recipe-23494724&docid=ph6a4YiimMMtnM&w=1500&h=1500&hl=en-IN&source=sh/x/im/m6/4&shem=uvafe2" },
-        // Add more food for Delhi
+        
       ],
       things: [
         { name: "Qutub Minar", desc: "A UNESCO World Heritage Site and ancient minaret.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
         { name: "Lotus Temple", desc: "A Bahá'í House of Worship known for its lotus flower-like architecture.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
-        // Add more things to do for Delhi
+        
       ],
     },
     {
@@ -66,29 +67,64 @@ const ItineraryCards = () => {
       places: [
         { name: "Ram Janmabhoomi", desc: "A sacred site believed to be the birthplace of Lord Rama.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
         { name: "Hanuman Garhi", desc: "A temple dedicated to Lord Hanuman with a view of the city.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
-        // Add more places for Ayodhya
+        
       ],
       food: [
         { name: "Ladoo", desc: "A sweet Indian delicacy made from gram flour and sugar.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
         { name: "Peda", desc: "A milk-based sweet flavored with cardamom and garnished with nuts.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
-        // Add more food for Ayodhya
+        
       ],
       things: [
         { name: "Kanak Bhavan", desc: "A temple with a rich history and cultural significance.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
         { name: "Treta Ke Thakur", desc: "A religious site associated with Lord Rama's stay in Ayodhya.", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVtYmFpfGVufDB8fDB8fHww" },
-        // Add more things to do for Ayodhya
+      
       ],
     },
-    // Add more cities
+
   ];
 
   const [selectedCity, setSelectedCity] = useState(citiesData[0].city);
   const [selectedCategory, setSelectedCategory] = useState("places");
   const [selectedItems, setSelectedItems] = useState(new Set());
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    const data = { user: "Harshith" };
+  
+    fetch("http://127.0.0.1:8000/api/submit-cart/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+         
+          throw new Error("Request failed");
+        }
+      })
+      .then((data) => {
+        console.log("Request successful:", data);
+        setSubmitStatus("success");
+        navigate('/mytrips');
+      })
+      .catch((error) => {
+        console.error("Request failed:", error);
+        setSubmitStatus("error");
+      });
+  };
+  
+  
 
   useEffect(() => {
-    setSelectedCategory("places"); // Set "Places" as the default category
+    setSelectedCategory("places"); 
   }, [selectedCity]);
 
   useEffect(() => {
@@ -205,7 +241,8 @@ const ItineraryCards = () => {
       </div>
 
       <div className="w-1/4 p-4">
-        <div className="cart">
+        {/* <div className="cart">
+
           <h2 className="mb-4">Selected Items</h2>
           {Array.from(selectedItems).map((item, index) => (
             <div key={index} className="flex items-center border p-2 mb-2 rounded">
@@ -219,7 +256,16 @@ const ItineraryCards = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+        <button
+    onClick={handleSubmit}
+    className={`border rounded-full border-green-600 text-green-900 decoration-2 text-md md:text-md px-2 md:px-8 py-2 cursor-pointer ${
+      submitStatus === "success" ? " bg-green-500 text-white" : ""
+              }`}
+  
+  >
+    {submitStatus === "success" ? "Form Submitted" : "Submit Form"}
+  </button>
       </div>
     </div>
   );

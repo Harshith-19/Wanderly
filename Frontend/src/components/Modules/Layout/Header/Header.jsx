@@ -1,7 +1,6 @@
 import React from "react";
 import Logo from "../../../Elements/Logo/Logo";
 import NavItems from "./NavItems";
-import { motion } from "framer-motion";
 import Snackbar from "./Snackbar";
 import Container from "../../Container/Container";
 import LoginDialog from "../../../LoginPopup";
@@ -45,7 +44,7 @@ const Header = () => {
           {links.map(({ href, title }) => (
             <NavItems href={href === "#home" ? "/" : href} title={title} key={title} />
           ))}
-          <button className='text-secondaryLight font-semibold border-2 border-secondaryLight px-9 py-2 rounded-md' onClick={openLoginDialog}>Login</button>
+          <button className='text-secondaryLight items-center font-semibold border-2 border-secondaryLight px-9 py-2 rounded-md' onClick={openLoginDialog}>Login</button>
           {/* </div> */}
 
          
@@ -63,10 +62,3 @@ const Header = () => {
 
 export default Header;
 
-const AuthButton = ({ children }) => {
-  return (
-    <motion.button className='text-secondaryLight font-semibold border-2 border-secondaryLight px-9 py-2 rounded-md'>
-      {children}
-    </motion.button>
-  );
-};

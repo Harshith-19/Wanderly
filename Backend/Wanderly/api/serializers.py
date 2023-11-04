@@ -11,7 +11,7 @@ class CitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cities
-        fields = ('id', 'name', 'description', 'popular', 'festivals')
+        fields = ('id', 'city', 'description', 'popular', 'festivals')
 
 class DetailsSerializer(serializers.Serializer):
     Country = serializers.CharField(max_length = 100)

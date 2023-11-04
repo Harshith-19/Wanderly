@@ -11,16 +11,19 @@ class PopularAndTrendingCityListView(APIView):
         if (serializer.is_valid()):
             query_set = Cities.objects.filter(country=serializer.validated_data['Country'])
             popular_cities = query_set.filter(popular=True)
+            popserializer = CitySerializer(popular_cities, many=True)
             trending_cities = []
             for city in query_set:
-                if (city.is_trending(serializer.validated_data['month'], serializer.validated_data['date'])):
+                month = serializer.validated_data['month']
+                date = serializer.validated_data['date']
+                if (city.is_trending(month, date)):
                     city_data = CitySerializer(city).data
                     festivals_data = FestivalSerializer(city.festivals.all(), many=True).data
                     city_data['festivals'] = festivals_data
                     trending_cities.append(city_data)
             response_data = {
                 'trending': trending_cities,
-                'popular': popular_cities
+                'popular': popserializer.data
             }
             return Response(response_data, status=status.HTTP_200_OK)
         else:

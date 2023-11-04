@@ -37,10 +37,10 @@ class AddToCartView(APIView):
     def post(self, request):
         serializer = AddToCartSerializer(data = request.data)
         if (serializer.is_valid()):
-            cityID = serializer.validated_data['cityID']
+            cityID = str(serializer.validated_data['cityID'])
             addType = serializer.validated_data['addType']
             user = serializer.validated_data['user']
-            TypeID = serializer.validated_data['TypeID']
+            TypeID = str(serializer.validated_data['TypeID'])
             cart, created = Cart.objects.get_or_create(user=user)
             jsonDec = json.decoder.JSONDecoder()
             itinerary = jsonDec.decode(cart.itinerary)
@@ -57,7 +57,7 @@ class AddToCartView(APIView):
             }
             serializer = CartSerializer(cart, updateditinerary)
             if (serializer.is_valid()):
-                self.perform_update(serializer)
+                serializer.save()
                 return Response(status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

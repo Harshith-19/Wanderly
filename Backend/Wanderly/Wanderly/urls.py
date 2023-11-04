@@ -16,11 +16,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from api.views import PopularAndTrendingCityListView
+from api.views import PopularAndTrendingCityListView, PlacesToVisitList
 from api.root import api_root
 
 urlpatterns = [
     path("", api_root),
     path('admin/', admin.site.urls),
-    path('pt-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
+    path('api/pt-cities/', PopularAndTrendingCityListView.as_view(), name='popular-and-trending-cities'),
+    path('api/places-to-visit/<int:city_id>/', PlacesToVisitList.as_view(), name='places-to-visit-list'),
 ]

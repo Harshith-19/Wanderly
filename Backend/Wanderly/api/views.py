@@ -79,7 +79,11 @@ class UniqueByCity(generics.ListAPIView):
         city_id = self.kwargs.get('city_id')
         return Unique.objects.filter(city=city_id)
 
-
+class ListSlangByCity(generics.ListAPIView):
+    serializer_class = CitySlangSerializer
+    def get_queryset(self):
+        city_id = self.kwargs.get('city_id')
+        return CitySlang.objects.filter(city=city_id)
 
 class SubmitCartView(APIView):
     def post(self, request):

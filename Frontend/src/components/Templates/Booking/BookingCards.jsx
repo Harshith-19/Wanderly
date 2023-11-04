@@ -44,7 +44,7 @@ const BookingCards = () => {
   const handleGoButtonClick = () => {
     const selectedCitiesParam = selectedCities.join(',');
 
-    // Use the navigate function to go to the ItineraryCards page with the data in the location state
+    
     navigate('/itinerarycards', { state: { selectedCities: selectedCitiesParam } });
   };
 
@@ -80,27 +80,47 @@ const BookingCards = () => {
           <div className="text-xl font-bold my-2">{cityCategory.category}</div>
           <div className="grid grid-cols-3 gap-4">
           {cityCategory.cities.map((place, index) => (
+            <div
+  key={index}
+  onClick={() => handleCitySelect(place.name)}
+  className={`cursor-pointer bg-white p-4 rounded-lg border border-gray-200 flex items-center justify-between transform hover:scale-105 transition-transform ${
+    selectedCities.includes(place.name) ? "shadow-md" : ""
+  }`}
+  style={{
+    position: 'relative',
+  }}
+>
   <div
-    key={index}
-    onClick={() => handleCitySelect(place.name)}
-    className={`cursor-pointer bg-white p-4 rounded-lg border border-gray-200 ${
-      selectedCities.includes(place.name) ? "shadow-md" : ""
-    }`}
-  >
+    className="absolute top-0 left-0 right-0 bottom-0"
+    style={{
+      backgroundImage: `url(${place.image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      opacity: '0.2',
+      zIndex: '-1',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      right: '0',
+      bottom: '0',
+    }}
+  ></div>
+  <div className="flex items-center space-x-4 w-1/5">
     <input
       type="checkbox"
-      className="mr-2 h-6 w-6 rounded-full border-2 border-green-400 appearance-none checked:bg-green-500 checked:border-green-600 cursor-pointer mr-2"
+      className="h-6 w-6 rounded-full border-2 border-green-400 appearance-none checked:bg-green-500 checked:border-green-600 cursor-pointer"
       checked={selectedCities.includes(place.name)}
       onChange={() => handleCitySelect(place.name)}
     />
-    <div className="text-xl font-bold mb-2">
-      <h2 className="inline-block mr-2">{place.name}</h2>
-      <p className="text-sm text-gray-500 inline-block">
-        Rating: {place.rating}
-      </p>
-    </div>
-    
   </div>
+  <div className="w-4/5">
+    <div className="text-xl font-bold">
+      <h2 className="text-gray-800">{place.name}</h2>
+    </div>
+    <p className="text-sm text-gray-500">Rating: {place.rating}</p>
+  </div>
+</div>
+
   
   
 ))}
@@ -115,7 +135,7 @@ const BookingCards = () => {
       <div className="md:col-span-2 text-center">
         <button
           className="bg-yellow-500 text-white rounded-full py-3 px-6 text-lg font-semibold"
-          onClick={handleGoButtonClick} // Call the function when the button is clicked
+          onClick={handleGoButtonClick} 
         >
           Go!
         </button>

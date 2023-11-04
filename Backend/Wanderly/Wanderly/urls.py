@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from api.views import *
 from api.root import api_root
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", api_root),
@@ -31,4 +33,8 @@ urlpatterns = [
     path('api/add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
     path('api/submit-cart/', SubmitCartView.as_view(), name='submit-cart'),
     path('api/view-trip/<int:TripID>/', ViewTripView.as_view(), name='trip-view'),
+    path('api/list-trip/<str:user>/', ListTripView.as_view(), name='trip-list'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

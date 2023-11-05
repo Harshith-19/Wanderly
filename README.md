@@ -16,11 +16,9 @@ Presenting to you Wanderly, a stop-platform that helps planning your trips to th
 
 ##Glimpses into our solution
 
-![]([https://drive.google.com/file/d/1j9JSXw2XyucW7rGGS5adAlaiipy5UutR/view?usp=drive_link](https://ibb.co/2nCLCwV))
-![]([https://drive.google.com/file/d/1EC0nrM23gm4STESXqQtxyASQ_HYijjB5/view?usp=drive_link](https://ibb.co/ZYXmKBH))
-![]([https://drive.google.com/file/d/1I4hxnOz703233v4ws618eF5-JTunoFpz/view?usp=drive_link](https://ibb.co/vdWP0Jd
-https://ibb.co/ZYXmKBH
-https://ibb.co/2nCLCwV))
+![](https://ibb.co/2nCLCwV)
+![](https://ibb.co/ZYXmKBH)
+![](https://ibb.co/vdWP0Jd)
 
 ##How to run:
 1. git clone git@github.com:Harshith-19/Wanderly.git

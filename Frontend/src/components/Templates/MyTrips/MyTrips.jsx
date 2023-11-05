@@ -1,3 +1,4 @@
+
 import React from "react";
 import './MyTrips.css'
 import TripCard from './TripCard'
@@ -5,11 +6,11 @@ import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 
   
-const Mytrips = () => {
+const Mytrips = ({trips}) => {
     return (
-    
-        <TripCard />
-
+    trips.map((trip, index) => (
+        <TripCard key={index} tripId={trip.id} Country={trip.country}/>
+    ))
     )
 }
 export default Mytrips;

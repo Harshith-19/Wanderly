@@ -30,5 +30,5 @@ Presenting to you Wanderly, a stop-platform that helps planning your trips to th
 5. cd Frontend/
 6. npm i
 7. npm start
-7.You are good to go!
+8. You are good to go!
 

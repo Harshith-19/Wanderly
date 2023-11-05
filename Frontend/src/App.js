@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "./components/Modules/Container/Container";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HeroSection from "./components/Templates/Home/HomeHero/HeroSection";
@@ -7,6 +7,7 @@ import BookingCards from "./components/Templates/Booking/BookingCards";
 import SlangPage from "./components/Templates/Slangs/slangs";
 import ItineraryCards from "./components/Templates/ItinerarySelection/ItineraryCards";
 import MyTrips from "./components/Templates/MyTrips/MyTrips.jsx";
+import axios from 'axios';
 
 function App() {
   const { hash } = window.location;
@@ -16,6 +17,20 @@ function App() {
       ele.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [hash]);
+  const [trips, setTrips] = useState([]);
+   useEffect(()=>{
+    const fetchPosts = async()=>{
+      try{
+        const Userdata = await axios.get("http://127.0.0.1:8000/api/list-trip/harshith/");
+        setTrips(Userdata.data);
+        
+      } catch(err){
+        console.log(err);
+      }
+    }
+    fetchPosts();
+   },[])
+   
   return (
     
       <Router>
@@ -25,7 +40,7 @@ function App() {
         <Route path="/bookingCards" element={<Container><BookingCards/></Container>} />
         <Route path="/itinerarycards" element={<Container><ItineraryCards/></Container>} />
         <Route path="/slangs" element={<Container><SlangPage/></Container>} />
-        <Route path="/myTrips" element={<Container><MyTrips/></Container>} />
+        <Route path="/myTrips" element={<Container><MyTrips trips={trips}/></Container>} />
       </Routes>
       
     </Router>
